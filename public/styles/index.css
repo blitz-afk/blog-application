@@ -1,0 +1,170 @@
+/* =========================
+   Theme Variables
+   ========================= */
+:root {
+    --bg-color: #ebebeb;
+    --card-bg: #ffffff;
+    --text-main: #111111;
+    --text-sub: #666666;
+}
+
+/* =========================
+   Global Reset
+   ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+/* =========================
+   Page Layout
+   ========================= */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* =========================
+   Heading
+   ========================= */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    letter-spacing: -1.5px;
+    margin-bottom: 4rem;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+/* =========================
+   Grid Container
+   ========================= */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 800px;
+    width: 100%;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.2s forwards;
+}
+
+/* =========================
+   Option Cards
+   ========================= */
+.option-card {
+    background: var(--card-bg);
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    height: 280px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================
+   Card Icon
+   ========================= */
+.icon-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    transition: transform 0.4s ease;
+}
+
+.icon-box svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--text-main);
+    stroke-width: 1.5;
+}
+
+/* =========================
+   Card Text
+   ========================= */
+.card-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-sub);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+/* =========================
+   Hover Interactions
+   ========================= */
+.option-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.option-card:hover .icon-box {
+    transform: scale(1.1);
+}
+
+.option-card:hover .card-text {
+    color: var(--text-main);
+}
+
+/* =========================
+   Animations
+   ========================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   Responsive Adjustments
+   ========================= */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    .option-card {
+        height: 160px;
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .icon-box {
+        margin-bottom: 0;
+    }
+}
