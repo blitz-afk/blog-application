@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,7 +17,7 @@ app.get("/create", (req,res)=>{
     res.render("create.ejs");
 })
 
-// You can remove app.get("/delete") since you deleted that page from the UI!
+
 
 // --- DATA STORAGE ---
 var dB = [];
@@ -39,8 +39,7 @@ app.post("/create-post",(req,res)=>{
     
     dB.unshift(post); // adds the new post at first place;
     
-    // FIX: Redirect instead of Render
-    // This changes the URL to "/posts" and prevents form resubmission on refresh
+    
     res.redirect("/posts");
 })
 
@@ -48,10 +47,7 @@ app.post("/create-post",(req,res)=>{
 app.post("/delete-post", (req, res) => {
     const idToDelete = parseInt(req.body.deleteId);
     
-    // Filter the dB array to keep everything EXCEPT the one with that ID
     dB = dB.filter(post => post.postId !== idToDelete);
-    
-    // Refresh the page
     res.redirect("/posts"); 
 });
 
